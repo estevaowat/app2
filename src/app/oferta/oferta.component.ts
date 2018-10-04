@@ -17,10 +17,11 @@ export class OfertaComponent implements OnInit {
     private ofertaService: OfertasServices) { }
 
   ngOnInit() {
+
     this.ofertaService.getOfertasPorId(this.route.snapshot.params["id"])
       .then((oferta: Oferta) => {
-        this.oferta = oferta 
+        this.oferta = oferta
       })
-  }
 
+  }
 }
