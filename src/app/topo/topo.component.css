@@ -6,6 +6,10 @@
     color: #C1E4FF
 }
 
+.navbar{
+    background: #FFF
+}
+
 .nav-link:hover{
     color: #FFF
 }

@@ -16,7 +16,6 @@ import { of } from 'rxjs';
 export class TopoComponent implements OnInit {
 
   public ofertas: Observable<Oferta[]>
-  public ofertasArray: Oferta[]
   private subjectPesquisa: Subject<string> = new Subject<string>()
 
   constructor(private ofertasService: OfertasServices) { }
@@ -25,23 +24,18 @@ export class TopoComponent implements OnInit {
     this.ofertas = this.subjectPesquisa.pipe(debounceTime(1000),
       distinctUntilChanged(),
       switchMap((termo: string) => {
-
         return termo.trim() === "" ? of<Oferta[]>([]) : this.ofertasService.getOfertasPorDescricao(termo);
       }),
       catchError((erro: any) => {
-        console.log(erro)
         return of<Oferta[]>([])
       })
     );
-    this.ofertas.subscribe((ofertas: Oferta[]) => {
-      console.log(ofertas)
-      this.ofertasArray = ofertas
-    })
   }
 
   public pesquisar(txtBusca: string): void {
-    console.log("Disparando o metodo pesquisar")
     this.subjectPesquisa.next(txtBusca)
-
+  }
+  public limpaPesquisa() {
+    this.subjectPesquisa.next('')
   }
 }
