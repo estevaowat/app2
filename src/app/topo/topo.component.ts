@@ -21,7 +21,7 @@ export class TopoComponent implements OnInit {
   constructor(private ofertasService: OfertasServices) { }
 
   ngOnInit() {
-    this.ofertas = this.subjectPesquisa.pipe(debounceTime(1000),
+    this.ofertas = this.subjectPesquisa.pipe(debounceTime(750),
       distinctUntilChanged(),
       switchMap((termo: string) => {
         return termo.trim() === "" ? of<Oferta[]>([]) : this.ofertasService.getOfertasPorDescricao(termo);
