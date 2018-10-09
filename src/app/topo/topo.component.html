@@ -13,6 +13,7 @@
             placeholder="Pesquise por ofertas..." 
             #termoDaPesquisa
             (keyup)="pesquisar(termoDaPesquisa.value)"
+            
           />
           <ul class="list-group" style="position: absolute; z-index: 999">
             <li class="list-group-item" *ngFor="let oferta of ofertas | async">

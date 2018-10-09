@@ -6,7 +6,6 @@ import { switchMap, } from 'rxjs/internal/operators/switchMap';
 import { debounceTime, distinctUntilChanged, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-
 @Component({
   selector: 'app-topo',
   templateUrl: './topo.component.html',
