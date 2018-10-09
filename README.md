@@ -1,6 +1,6 @@
 # App2
 
-##Installation
+## Installation
 Run `npm install` to download dependencies to run app
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
