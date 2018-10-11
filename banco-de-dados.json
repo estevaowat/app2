@@ -147,6 +147,13 @@
       "complemento": "Apto 14",
       "formaPagamento": "dinheiro",
       "id": 2
+    },
+    {
+      "endereco": "Rua Duque de Caxias",
+      "numero": "575",
+      "complemento": "Apto 14",
+      "formaPagamento": "dinheiro",
+      "id": 3
     }
   ],
   "como-usar": [
