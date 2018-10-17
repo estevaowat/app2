@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { OrdemCompraService } from '../ordem-compra.service'
 import { Pedido } from '../shared/pedido.model'
-import { NgForm } from '@angular/forms';
+import { CarrinhoService } from '../carrinho.service';
+import { ItemCarrinho } from '../shared/item-carrinho.model';
+
 
 @Component({
   selector: 'app-ordem-compra',
@@ -11,23 +14,39 @@ import { NgForm } from '@angular/forms';
 })
 export class OrdemCompraComponent implements OnInit {
 
-  constructor(private ordemCompraService: OrdemCompraService) { }
+  public idPedidoCompra: number
+  public itensCarrinho: ItemCarrinho[] = []
+  public formulario: FormGroup = new FormGroup({
+    'endereco': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(120)]),
+    'numero': new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
+    'complemento': new FormControl(null),
+    'formaPagamento': new FormControl(null, [Validators.required])
+  })
 
-  @ViewChild('formulario') public formulario: NgForm
+  constructor(
+    private ordemCompraService: OrdemCompraService,
+    private carrinhoService: CarrinhoService
+  ) { }
+
   ngOnInit() {
-
+    this.itensCarrinho = this.carrinhoService.exibirItens()
+    console.log(this.carrinhoService.exibirItens());
   }
 
   public confirmarCompra(): void {
-    //console.log(this.formulario.value)
-    let pedido: Pedido = new Pedido(this.formulario.value.endereco,
+    let pedido: Pedido = new Pedido(
+      this.formulario.value.endereco,
       this.formulario.value.numero,
       this.formulario.value.complemento,
       this.formulario.value.formaPagamento,
     )
-
     this.ordemCompraService.efetivarCompra(pedido)
-      .subscribe((idPedido:number)=>console.log("O numero do pedido inserido foi ", idPedido))
+      .subscribe((idPedidoCompra: number) => {
+        console.log(idPedidoCompra)
+        this.idPedidoCompra = idPedidoCompra
+      })
 
+
+    console.log(pedido)
   }
 }
