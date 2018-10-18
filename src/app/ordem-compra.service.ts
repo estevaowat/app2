@@ -11,11 +11,9 @@ export class OrdemCompraService {
     constructor(private http: Http) { }
 
     public efetivarCompra(pedido: Pedido): Observable<number> {
-
+        console.log(pedido)
         let headers: Headers = new Headers()
-
         headers.append('Content-type', 'application/json')
-
         return this.http.post(
             `${API_URL_PEDIDO}`,
             JSON.stringify(pedido),
