@@ -1,4 +1,8 @@
-# App2
+# PassaroUrbano
+
+
+This project is a clone of site PassaroUrbano, using Angular 6
+
 
 ## Installation
 Run `npm install` to download dependencies to run app
